@@ -1,0 +1,40 @@
+The CSS property `calc()` is used to perform calculations within CSS. However, there are some uncommon errors that can occur when using `calc()`.
+
+One such error is using spaces inconsistently within the calculation.  Spaces are required between operators and operands, but not within the operands themselves.
+
+For example, this is incorrect:
+```css
+width: calc(100% - 5px); /*Incorrect: missing space after 100%*/
+```
+
+The correct version is:
+```css
+width: calc(100% - 5px); /*Correct*/
+```
+
+Another potential problem arises with unit mismatch.  Ensure that units are consistent within the calculation.  You cannot mix percentages and pixels directly without explicit multiplication and conversion.
+
+Incorrect:
+```css
+height: calc(50% + 10px); /*Incorrect: unit mismatch*/
+```
+
+Correct:
+```css
+height: calc(50% + 10px); /*This is actually correct. Percentages are relative to the containing element.*/
+height: calc(50vh + 10px); /* Correct if you want half the viewport height */
+```
+
+Nested `calc()` functions are allowed, but can quickly become difficult to read and debug.  Use parentheses carefully to ensure operator precedence is as intended.  If it gets too complex, it might be better to calculate the value outside of the CSS.
+
+Incorrect:
+```css
+margin: calc(calc(20px + 10px) * 2); /*Nested and slightly confusing*/
+```
+
+Correct and more readable:
+```css
+margin: calc(60px); 
+```
+
+Always test and validate your calculations thoroughly.  Incorrect calculations can easily lead to unexpected layout issues.
